@@ -31,6 +31,6 @@ In short, the following steps have been executed:
 
  # Navigation
 
- Go to Next section: [Setting up working groups](work.md)
+ Go to Next section: [Setting up working groups](documentation/work.md)
 
  Return to [Main page](README.md)

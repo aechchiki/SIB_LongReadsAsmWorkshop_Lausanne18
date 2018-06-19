@@ -84,3 +84,9 @@ By default, this will open a terminal pager program (e.g., `less`), so:
 
 
 Don't hesitate to learn more about Unix commands using man pages!
+
+# Navigation
+
+Go to Next section: [Pre-assembly steps](documentation/bio.md)
+
+Return to [Main page](README.md)

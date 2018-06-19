@@ -1,6 +1,6 @@
 # Getting ready for assembly
 
-Remember from [Previous section](ass_main.md) that, for each group:
+Remember from [Previous section](documentation/ass_main.md) that, for each group:
 
  - all of you can go through the Miniasm assembly
  - only one of you may proceed to the Canu assembly
@@ -16,7 +16,7 @@ Before we start with the assembly process we have to provide some kind of struct
 
 3. Navigate into that new directory: `cd <username>`
 
-4. According your [group ID](work.md), copy the long reads for your group into that folder from:  `/scratch/beegfs/monthly/eschmid/workshop_assembly/ATH/PACBIO` or `/scratch/beegfs/monthly/eschmid/workshop_assembly/ATH/ONT`
+4. According your [group ID](documentation/work.md), copy the long reads for your group into that folder from:  `/scratch/beegfs/monthly/eschmid/workshop_assembly/ATH/PACBIO` or `/scratch/beegfs/monthly/eschmid/workshop_assembly/ATH/ONT`
 
 5. You'll need also to copy some working scripts: `cp -R /scratch/beegfs/monthly/eschmid/workshop_assembly/ATH/software .`
 
@@ -39,11 +39,11 @@ We will describe here two working examples to fetch data for PacBio or Nanopore 
 
 # Tutorials
 
-According your [group ID](work.md), follow the tutorial:
- - [Miniasm: PacBio data](miniasm_pb.md)
- - [Miniasm: Nanopore data](miniasm_nano.md)
- - [Canu: PacBio data](canu_pb.md)
- - [Canu: Nanopore data](canu_nano.md)
+According your [group ID](documentation/work.md), follow the tutorial:
+ - [Miniasm: PacBio data](documentation/miniasm_pb.md)
+ - [Miniasm: Nanopore data](documentation/miniasm_nano.md)
+ - [Canu: PacBio data](documentation/canu_pb.md)
+ - [Canu: Nanopore data](documentation/canu_nano.md)
 
 
  # Navigation
