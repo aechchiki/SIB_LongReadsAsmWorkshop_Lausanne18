@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>tutorial_ATH_assembly</title>
+      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(197, 200, 198); background-color: rgb(29, 31, 33); overflow: auto; }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(155, 160, 157); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(155, 160, 157); border-color: rgb(67, 72, 76); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(67, 72, 76); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(67, 72, 76); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(48, 51, 55); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(39, 41, 44); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(67, 72, 76) rgb(67, 72, 76) rgb(53, 57, 60); border-image: initial; background-color: rgb(48, 51, 55); }
+.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow: scroll; }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.0392157); border-radius: 3px; }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border-radius: 3px; }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
+.markdown-preview .task-list-item-checkbox { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+.markdown-preview code { text-shadow: none; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher {
+  background-color: #777;
+}
+
+.markdown-themeable-pdf-page-break {
+  border-top: 2px dotted #0098ff;
+}
+.markdown-themeable-pdf-page-break span {
+  opacity: .35;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #1d1f21;
+  color: #c5c8c6;
+}
+pre.editor-colors .wrap-guide {
+  background-color: #676a6c;
+}
+pre.editor-colors .indent-guide {
+  color: #676a6c;
+}
+pre.editor-colors .invisible-character {
+  color: #676a6c;
+}
+pre.editor-colors .gutter {
+  background-color: #1d1f21;
+  color: #969896;
+}
+pre.editor-colors .gutter .line-number {
+  padding: 0 0.25em 0 0.5em;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  background-color: #373b41;
+  color: #c5c8c6;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  color: #c5c8c6;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #969896;
+}
+pre.editor-colors .invisible {
+  color: #c5c8c6;
+}
+pre.editor-colors .cursor {
+  color: #ffffff;
+}
+pre.editor-colors .selection .region {
+  background-color: #373b41;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-color: #969896;
+}
+.syntax--comment {
+  color: #969896;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #969896;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #f0c674;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #b5bd68;
+}
+.syntax--keyword {
+  color: #b294bb;
+}
+.syntax--keyword.syntax--control {
+  color: #b294bb;
+}
+.syntax--keyword.syntax--operator {
+  color: #c5c8c6;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #81a2be;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #de935f;
+}
+.syntax--storage {
+  color: #b294bb;
+}
+.syntax--constant {
+  color: #de935f;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #8abeb7;
+}
+.syntax--constant.syntax--numeric {
+  color: #de935f;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #8abeb7;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #b5bd68;
+}
+.syntax--variable {
+  color: #cc6666;
+}
+.syntax--variable.syntax--interpolation {
+  color: #a3685a;
+}
+.syntax--variable.syntax--parameter.syntax--function {
+  color: #c5c8c6;
+}
+.syntax--invalid.syntax--illegal {
+  background-color: #cc6666;
+  color: #1d1f21;
+}
+.syntax--string {
+  color: #b5bd68;
+}
+.syntax--string.syntax--regexp {
+  color: #8abeb7;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #f0c674;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #cc6666;
+}
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #c5c8c6;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #81a2be;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #f0c674;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #b294bb;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #a3685a;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #c5c8c6;
+}
+.syntax--support.syntax--class {
+  color: #f0c674;
+}
+.syntax--support.syntax--function {
+  color: #8abeb7;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #81a2be;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #81a2be;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #f0c674;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #81a2be;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #cc6666;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #de935f;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #81a2be;
+}
+.syntax--meta.syntax--class {
+  color: #f0c674;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #c5c8c6;
+}
+.syntax--meta.syntax--link {
+  color: #de935f;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #c5c8c6;
+}
+.syntax--meta.syntax--require {
+  color: #81a2be;
+}
+.syntax--meta.syntax--selector {
+  color: #b294bb;
+}
+.syntax--meta.syntax--separator {
+  background-color: #373b41;
+  color: #c5c8c6;
+}
+.syntax--meta.syntax--tag {
+  color: #c5c8c6;
+}
+.syntax--none {
+  color: #c5c8c6;
+}
+.syntax--markup.syntax--bold {
+  color: #de935f;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #b294bb;
+}
+.syntax--markup.syntax--deleted {
+  color: #cc6666;
+}
+.syntax--markup.syntax--italic {
+  color: #b294bb;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #cc6666;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #81a2be;
+}
+.syntax--markup.syntax--link {
+  color: #81a2be;
+}
+.syntax--markup.syntax--inserted {
+  color: #b5bd68;
+}
+.syntax--markup.syntax--quote {
+  color: #de935f;
+}
+.syntax--markup.syntax--raw {
+  color: #b5bd68;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #8abeb7;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #b294bb;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #cc6666;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #cc6666;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #b5bd68;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #8abeb7;
+}
+</style>
+  </head>
+  <body class='markdown-preview' data-use-github-style><h1 id="assembly-of-the-chr1-of-arabidopsis-thaliana">Assembly of the Chr1 of Arabidopsis thaliana</h1>
+<p>As the oak assembly is too fragmented ,our PacBio coverage is not sufficient (20x) and a high level of heterozygosity is complicating it even further (&gt;1%),
+we wont be able to assemble pieces of the oak tree currently.</p>
+<p>Instead we will assemble another dploid plant - <em>Arabidopsis thaliana</em>.
+The raw data and the assembly stem from a very recent publication:</p>
+<p><strong>High contiguity Arabidopsis thaliana genome assembly with a single nanopore flow cell</strong> <a href="https://www.nature.com/articles/s41467-018-03016-2#Sec9">link</a></p>
+<p>We have the following data available:</p>
+<ul>
+<li>1 raw PacBio Sequel cell in <code>.bam</code> - format <a href="ftp://ftp.sra.ebi.ac.uk/vol1/ERA111/ERA1116568/bam/pb.bam">link to ENA</a></li>
+<li>1 Nanopore run in <code>.fq</code> - format <a href="ftp://ftp.sra.ebi.ac.uk/vol1/ERA111/ERA1116595/fastq/ont.fq.gz">link ENA</a></li>
+</ul>
+<p>Unfortunalty the raw <code>.f5</code> format from Nanopore is not available.</p>
+<p>We will try to assemble the chromosome 4 from Arabidopsis which has a size of ~20 Mbp and is the smallest chromosome.</p>
+<p>One part of the course will assemble parts of it with PacBio data and the other one with Nanopore data.</p>
+<p>In order to have reads which are chromosome "exclusive", we already generated a chromosome 4 read sub-set.
+If time allows it later we will repeat the sub-setting of chromosomal reads ourself.</p>
+<h1 id="assembly-of-chromosome-4">Assembly of chromosome 4</h1>
+<p>The following steps have been already executed and are descibed below:</p>
+<ul>
+<li>convert RAW data in a suitable format</li>
+<li>map reads onto chromosome 4 (we split it further into 4 regions)</li>
+<li>filter reads which are suitable (remove multimapping or other problematic ones)</li>
+<li>subset initial total reads to reads of interest</li>
+</ul>
+<h2 id="conversion-of-reads-to-fasta-">conversion of reads to FASTA.</h2>
+<h3 id="pacbio">PacBio</h3>
+<p>PacBio sequencing data come these days in <code>BAM</code> format, previously in <code>h5</code>.
+To extract the subreads one can use multiple tools.
+Here we use bamtools but there are other options (e.g. DEXTRACTOR)</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;bsub&nbsp;'module&nbsp;add&nbsp;UHTS/Analysis/bamtools/2.4.1;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;bamtools&nbsp;convert&nbsp;-in&nbsp;../RAW/pb.bam&nbsp;-out&nbsp;SUBREADS/pb.fasta&nbsp;-format&nbsp;fasta'</span></span></div></pre><h3 id="ont">ONT</h3>
+<p>For ONT we only have to convert here the data to <code>FASTA</code> for some of the steps.
+As we have multiple <code>''</code> and <code>""</code> signs in the command it is easier to write a quick bsub script rather to submit a command directly.</p>
+<pre class="editor-colors lang-bash"><div class="line"><span class="syntax--source syntax--shell"><span>cat&nbsp;fastq2fasta.sh</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shebang syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shebang syntax--shell"><span>#!</span></span><span>/bin/bash</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>zcat&nbsp;../RAW/ont.fq.gz&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(NR%4==1)&nbsp;{printf("&gt;%s\n",substr($0,2));}&nbsp;else&nbsp;if(NR%4==2)&nbsp;print;}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;SUBREADS/ont.fasta</span></span></div></pre>
+<p>This can then be submitted</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;&lt;&nbsp;fastq2fasta.sh</span></span></div></pre><h2 id="mapping-reads-onto-chromosome-4">mapping reads onto chromosome 4</h2>
+<p>Next, we map all reads against the chromosome 4 in order to find reads of interest</p>
+<h3 id="pacbio">PacBio</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>'module&nbsp;add&nbsp;UHTS/Analysis/minimap2/2.8;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;module&nbsp;add&nbsp;UHTS/Analysis/samtools/1.4;&nbsp;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;minimap2&nbsp;../chrom4.fasta&nbsp;SUBREADS/pb.fasta&nbsp;-x&nbsp;map-pb&nbsp;-a&nbsp;-t&nbsp;10&nbsp;|&nbsp;samtools&nbsp;view&nbsp;-bhS&nbsp;|&nbsp;samtools&nbsp;sort&nbsp;-o&nbsp;PBonChrom4.bam'</span></span></div></pre><p>Which has to be indexed as well</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;'module&nbsp;add&nbsp;UHTS/Analysis/samtools/1.4;&nbsp;samtools&nbsp;index&nbsp;PBonChrom4.bam&nbsp;'</span></span></div></pre><h3 id="ont">ONT</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>'module&nbsp;add&nbsp;UHTS/Analysis/minimap2/2.8;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>module&nbsp;add&nbsp;UHTS/Analysis/samtools/1.4;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>minimap2&nbsp;../chrom4.fasta&nbsp;SUBREADS/ont.fasta&nbsp;-x&nbsp;map-ont&nbsp;-a&nbsp;-t&nbsp;30&nbsp;|&nbsp;samtools&nbsp;view&nbsp;-bhS&nbsp;|&nbsp;samtools&nbsp;sort&nbsp;-o&nbsp;ONTonChrom4.bam&nbsp;&amp;&amp;&nbsp;&nbsp;samtools&nbsp;index&nbsp;ONTonChrom4.bam'</span></span></div></pre><p>Important: the <code>-x map-ont</code> or pb specifies which data-type we are providing.</p>
+<p>We can visualize now the coverage in order to get an idea whether we have gaps or repeats for each data set.</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bsub&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'module&nbsp;add&nbsp;UHTS/Analysis/BEDTools/2.26.0;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;bedtools&nbsp;genomecov&nbsp;-ibam&nbsp;PBonChrom4.bam&nbsp;-bga&nbsp;-g&nbsp;../chrom4.fasta&nbsp;&gt;&nbsp;PBchrom4.cvoreage.bedGraph'</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bsub&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'module&nbsp;add&nbsp;UHTS/Analysis/BEDTools/2.26.0;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bedtools&nbsp;genomecov&nbsp;-ibam&nbsp;ONTonChrom4.bam&nbsp;-bga&nbsp;-g&nbsp;../chrom4.fasta&nbsp;&gt;&nbsp;ONTchrom4.cvoreage.bedGraph&nbsp;'</span></span></div></pre><p><img alt="" src="/Home/eschmid/Documentation/Assembly_Workshop/coverageChrom4.png"></p>
+<p>There is a big repeat at around 4 Mbp (maybe centromeric region), but in general we dont have any regions missing.</p>
+<p>Lets now split the chromosome into 4 to build later 4 groups in the course:</p>
+<p>0-5 Mbp
+4-9 Mbp
+8-14 Mbp
+13-End Mbp</p>
+<p>As we generate 4 overlapping regions we hopefully can later stich them together again.</p>
+<p>Now we want all the read names which are associated with reads matching to each region:</p>
+<h2 id="filter-reads-which-are-suitable">filter reads which are suitable</h2>
+<p>We will use the alignment file here and extract all reads which have a Sam flag "0".</p>
+<h3 id="pacbio">PacBio</h3>
+<pre class="editor-colors lang-bash"><div class="line"><span class="syntax--source syntax--shell"><span>cat&nbsp;&nbsp;extractRegionsPB.sh</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shebang syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shebang syntax--shell"><span>#!</span></span><span>/bin/bash</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shell"><span>#</span></span><span>BSUB&nbsp;-e&nbsp;PBsplitting.error.txt</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shell"><span>#</span></span><span>BSUB&nbsp;-e&nbsp;PBsplitting.infor.txt</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>module&nbsp;add&nbsp;UHTS/Analysis/samtools/1.4</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;PBonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:1-5000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/^m54052/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;PB_chrom4_S1.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;PBonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:4000000-9000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/^m54052/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;PB_chrom4_S2.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;PBonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:8000000-14000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/^m54052/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;PB_chrom4_S3.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;PBonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:13000000-18585056</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/^m54052/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;PB_chrom4_S4.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div></pre>
+<p>In order to later polish with PacBio we need a BAM file as input. We therefore need to 1st subset the raw BAM file based on the above information.
+We made a little tools which takes the ZMV and extracts the entries:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bsub&nbsp;"perl&nbsp;-npe&nbsp;'s/.*\/([0-9]+)\/.*/\$1/'&nbsp;PB_chrom4_S${i}.reads&nbsp;|&nbsp;sort&nbsp;-n&nbsp;|&nbsp;uniq&nbsp;&gt;&nbsp;PB_chrom4_S${i}.zmv"&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bsub&nbsp;"/scratch/cluster/monthly/tschuepb/bin/FilterBAM&nbsp;../RAW/pb.bam&nbsp;PB_chrom4_S${i}.bam&nbsp;PB_chrom4_S${i}.zmv&nbsp;&nbsp;&gt;&nbsp;log&nbsp;2&gt;&amp;1&nbsp;&amp;"</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>Note: this subsettings is almost never necessary as one would normally assemble the entire genome. We therefore wrote a quick script on the fly. There might ne as well the possibility to use samtools/bamtools to subset these alternatively but we did not try.</p>
+<h3 id="ont">ONT</h3>
+<p>Again, this is in principle similar than above except that we dont need to subset a <code>BAM</code> file but (which is easier) a <code>FASTA</code> file.</p>
+<pre class="editor-colors lang-bash"><div class="line"><span class="syntax--source syntax--shell"><span>cat&nbsp;&nbsp;extractRegionsONT.sh</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shebang syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shebang syntax--shell"><span>#!</span></span><span>/bin/bash</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shell"><span>#</span></span><span>BSUB&nbsp;-e&nbsp;PBsplitting.error.txt</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span class="syntax--comment syntax--line syntax--number-sign syntax--shell"><span class="syntax--punctuation syntax--definition syntax--comment syntax--shell"><span>#</span></span><span>BSUB&nbsp;-e&nbsp;PBsplitting.infor.txt</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>module&nbsp;add&nbsp;UHTS/Analysis/samtools/1.4</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;ONTonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:1-5000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/Basecall/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;ONT_chrom4_S1.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;ONTonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:4000000-9000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/Basecall/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;ONT_chrom4_S2.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;ONTonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:8000000-14000000</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/Basecall/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;ONT_chrom4_S3.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div><div class="line"><span class="syntax--source syntax--shell"><span>samtools&nbsp;view&nbsp;ONTonChrom4.bam&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>"</span></span><span>NC_003075.7:13000000-18585056</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>"</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--pipe syntax--shell"><span>|</span></span><span>&nbsp;awk&nbsp;</span><span class="syntax--string syntax--quoted syntax--single syntax--shell"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--shell"><span>'</span></span><span>{if(/Basecall/&nbsp;&amp;&amp;&nbsp;$2==0)&nbsp;print&nbsp;$1}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--shell"><span>'</span></span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--redirect syntax--shell"><span>&gt;</span></span><span>&nbsp;ONT_chrom4_S4.reads&nbsp;</span><span class="syntax--keyword syntax--operator syntax--list syntax--shell"><span>&amp;</span></span></span></div></pre>
+<h2 id="extract-the-subreads-as-fasta-for-miniasm-or-canu-">extract the subreads as FASTA for Miniasm (or Canu)</h2>
+<h3 id="pacbio">pacbio</h3>
+<p>This is similar to the above where we extract all reads from the <code>BAM</code> file</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;'module&nbsp;add&nbsp;UHTS/Analysis/bamtools/2.4.1;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bamtools&nbsp;convert&nbsp;-in&nbsp;PB_chrom4_S${i}.bam&nbsp;-out&nbsp;PB_chrom4_S${i}.fasta&nbsp;-format&nbsp;fasta'&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><h3 id="ont">ONT</h3>
+<p>Now we want to extract the reads in FASTA for the assembly. There are many ways to do that and I recommend you writing your own script in your prefered language. Ways to do that:</p>
+<ul>
+<li>samtools faidx</li>
+<li>BEDTools</li>
+<li>blastcmd</li>
+<li>....</li>
+</ul>
+<p>I used my own script (available but with no guarantee !)</p>
+<p>for i in {1..4};
+do
+     bsub "../software/extract_scaffold_version4.pl  -i ONT_chrom4_S${i}.reads -f ont.fasta -s &gt; ONT_chrom4_S${i}.reads.fasta " &amp;
+done</p>
+<h1 id="assembly-of-the-data">Assembly of the Data</h1>
+<p>The minimap2 + miniasm approach is extremly rapid and allows us to obtain within short time the assembly of chromosome4. It manages such an advantage in speed by assembling directly the raw reads without an hierarchical approach &amp; correcting the reads. There are limitations though:</p>
+<ul>
+<li>large repeats and repeats with very high similarity are much more difficult to resolve</li>
+<li>the assembly has the original PacBio error rate</li>
+<li>often many non-assembled fragments remain in the assembly</li>
+</ul>
+<p>It is separated into 2 steps:</p>
+<ol>
+<li>overlapping of all reads with each otherwise</li>
+<li>overlap-graph and steps to simplify it further (bubble popping, removing dead ends)</li>
+</ol>
+<h2 id="pacbio-miniasm">PacBio &amp; miniasm</h2>
+<p>Overlapping:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;"module&nbsp;add&nbsp;UHTS/Analysis/minimap2/2.8;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minimap2&nbsp;-x&nbsp;ava-pb&nbsp;-t&nbsp;5&nbsp;PB_chrom4_S${i}.fasta&nbsp;PB_chrom4_S${i}.fasta&nbsp;&gt;&nbsp;PB_chrom4_S${i}.overlap.paf"&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>Assemlby:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;"module&nbsp;add&nbsp;UHTS/Analysis/miniasm/0.2.r159.dirty;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;miniasm&nbsp;-f&nbsp;PB_chrom4_S${i}.fasta&nbsp;PB_chrom4_S${i}.overlap.paf&nbsp;-R&nbsp;-c&nbsp;10&nbsp;&gt;&nbsp;PB_chrom4_S${i}.miniasm.gfa"&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>The <code>gfa</code> format is very useful as it keeps the assembly path and how elements are connected.
+Unfortunately most down-stream tools dont accept it yet and we need to convert the <code>.gfa</code> -format to <code>.fasta</code>-format:</p>
+<p>The next script are very lightweight and can quickly be executed without bsub</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;awk&nbsp;'/^S/{print&nbsp;"&gt;"$2"\n"$3}'&nbsp;PB_chrom4_S${i}.miniasm.gfa&nbsp;|&nbsp;fold&nbsp;&gt;&nbsp;PB_chrom4_S${i}.miniasm.fasta</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;/Home/eschmid/tools/perl_script_contigs/assesV4.2.pl&nbsp;-t&nbsp;1&nbsp;-s&nbsp;1&nbsp;-i&nbsp;PB_chrom4_S${i}.miniasm.fasta&nbsp;-l&nbsp;-p&nbsp;&gt;&nbsp;PB_chrom4_S${i}.miniasm.assess.txt;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p><strong>Important*</strong>: replace the above script with a general available one instead</p>
+<h2 id="nanopore-miniasm">Nanopore &amp; Miniasm</h2>
+<p>Overlapping:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;"module&nbsp;add&nbsp;UHTS/Analysis/minimap2/2.8;&nbsp;\</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;minimap2&nbsp;-x&nbsp;ava-ont&nbsp;-t&nbsp;10&nbsp;ONT_chrom4_S${i}.reads.fasta&nbsp;ONT_chrom4_S${i}.reads.fasta&nbsp;&gt;&nbsp;ONT_chrom4_S${i}.overlap.paf&nbsp;"&nbsp;"&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>Assemlby:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bsub&nbsp;-n&nbsp;5&nbsp;-R&nbsp;"span[hosts=1]"&nbsp;-R&nbsp;"rusage[mem=8192]"&nbsp;-M&nbsp;8388608&nbsp;"module&nbsp;add&nbsp;UHTS/Analysis/miniasm/0.2.r159.dirty;&nbsp;\&nbsp;&nbsp;miniasm&nbsp;-f&nbsp;ONT_chrom4_S${i}.reads.fasta&nbsp;ONT_chrom4_S${i}.overlap.paf&nbsp;-R&nbsp;&gt;&nbsp;ONT_chrom4_S${i}.miniasm.gfa"&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>Conversion</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;awk&nbsp;'/^S/{print&nbsp;"&gt;"$2"\n"$3}'&nbsp;ONT_chrom4_S${i}.miniasm.gfa&nbsp;|&nbsp;fold&nbsp;&gt;&nbsp;ONT_chrom4_S${i}.miniasm.fasta</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;/Home/eschmid/tools/perl_script_contigs/assesV4.2.pl&nbsp;-t&nbsp;1&nbsp;-s&nbsp;1&nbsp;-i&nbsp;ONT_chrom4_S${i}.miniasm.fasta&nbsp;-l&nbsp;-p&nbsp;&gt;&nbsp;ONT_chrom4_S${i}.miniasm.assess.txt;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><p>Now importantly, these assembled sequences still have the average PacBio error rate (&gt;12%).
+In order to make it more useable we have to polish.
+This can be done with the same Nanopore reads (nanopolish, racon) or Illumina reads (Pillon,Racon).
+In general, polishing takes a lot of time - often more time than the assembly itself (especially with miniasm).</p>
+<h3 id="pacbio-canu">PacBio &amp; Canu</h3>
+<p>The command for the assembly:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>module&nbsp;add&nbsp;UHTS/Assembler/canu/1.6;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;canu&nbsp;&nbsp;-pacbio-raw&nbsp;PB_chrom4_S${i}.fasta&nbsp;&nbsp;-d&nbsp;CanuPB${i}&nbsp;-p&nbsp;PB${i}&nbsp;genomeSize=5m&nbsp;&amp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><h3 id="ont-canu">ONT &amp; Canu</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>module&nbsp;add&nbsp;UHTS/Assembler/canu/1.6;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>for&nbsp;i&nbsp;in&nbsp;{1..4};</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>do</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;canu&nbsp;&nbsp;-nanopore-raw&nbsp;ONTchrom4.reads.fasta&nbsp;&nbsp;-d&nbsp;CanuONT&nbsp;-p&nbsp;ONT&nbsp;genomeSize=20m</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>done</span></span></div></pre><h1 id="polishing-of-the-assemblies">Polishing of the assemblies</h1>
+<p>Now we still have a rather high error rate of &gt; 12% with miniasm which we need to correct for.
+This rate is much lower with canu ( less than 1%?) but it still benefits from polishing.</p>
+<p>We will primarily use Racon for polishing to keep the work-flow similar between the PacBio and Nanopore analysis. In general, the tool quiver from PacBio is much more efficient in cleaning residual errors as well as nanopolish for ONT.</p>
+<p>For all polishing tools, we 1st have to map reads onto the assembly which is then used to generate consensus sequences.</p>
+<h2 id="racon">Racon</h2>
+<p>For Racon we can use minimap2 again in order to map the reads which is great as it is extremly fast.</p>
+<h3 id="pacbio-racon">PacBio Racon</h3>
+<p>for i in {1..4};
+do
+  bsub -n 5 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 "module add UHTS/Analysis/minimap2/2.8; \
+    minimap2 -t 10 -ax map-pb PB_chrom4_S${i}.miniasm.fasta PB_chrom4_S${i}.fasta &gt; PB_chrom4_S${i}.miniasm.remap.sam" &amp;
+  done</p>
+<p>Here we need to specify a set of nodes as the software needs the chipset features "SSEv4_1 SSEv4_2 AVX" in order to function correctly. Otherwise we get core dumps.</p>
+<p>  for i in {1..4};
+  do
+    bsub -n 5 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 -m "cpt129 cpt131 cpt132 cpt133 cpt171 cpt172 cpt181 cpt182 cpt183 cpt184 cpt185 cpt186" " module add UHTS/Assembler/racon/1.0.1; racon PB_chrom4_S${i}.fasta PB_chrom4_S${i}.miniasm.remap.sam PB_chrom4_S${i}.miniasm.fasta -t 5 &gt; PB_chrom4_S${i}.miniasm.racon.fasta" &amp;
+  done</p>
+<h3 id="ont-racon">ONT racon</h3>
+<p>for i in {1..4};
+do
+  bsub -n 5 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 "module add UHTS/Analysis/minimap2/2.8; \
+    minimap2 -t 10 -ax map-ont ONT_chrom4_S${i}.miniasm.fasta ONT_chrom4_S${i}.reads.fasta &gt; ONT_chrom4_S${i}.miniasm.remap.sam" &amp;
+  done</p>
+<p>  for i in {1..4};
+  do
+    bsub -n 5 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 -m "cpt129 cpt131 cpt132 cpt133 cpt171 cpt172 cpt181 cpt182 cpt183 cpt184 cpt185 cpt186" " module add UHTS/Assembler/racon/1.0.1; racon ONT_chrom4_S${i}.reads.fasta ONT_chrom4_S${i}.miniasm.remap.sam ONT_chrom4_S${i}.miniasm.fasta -t 5 &gt; ONT_chrom4_S${i}.miniasm.racon.fasta" &amp;
+  done</p>
+<h2 id="technology-specific-polishing">technology specific Polishing</h2>
+<h3 id="pacbio-quiver">PacBio quiver</h3>
+<p>1st we have to map again the <code>BAM</code> files onto the assembly. This does <strong>not</strong> work with the extracted <code>FASTA</code> files.
+And it only works with the PacBio in-house tool <code>blasr</code> which is more sensitive than <code>minimap2</code> but slower.
+The below used <code>pbalign</code> is essentially a wrapper from PacBio which maps and indexes the alignments.</p>
+<p>  for i in {1..4};
+  do
+    bsub -n 8 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 "/scratch/beegfs/monthly/eschmid/smrtlink/smrtcmds/bin/pbalign PB_chrom4_S${i}.bam PB_chrom4_S${i}.miniasm.fasta  PB_chrom4_S${i}.miniasm.pbalign.bam" &amp;
+    done</p>
+<p>Next we can run the consensus algorithm "arrow" on it:</p>
+<p>for i in {1..4};
+do
+  bsub -n 8 -R "span[hosts=1]" -R "rusage[mem=8192]" -M 8388608 "/scratch/beegfs/monthly/eschmid/smrtlink/smrtcmds/bin/quiver PB_chrom4_S${i}.miniasm.pbalign.bam --referenceFilename PB_chrom4_S${i}.miniasm.fasta -o PB_chrom4_S${i}.miniasm.arrow.fasta --diploid --threaded --algorithm arrow" &amp;
+  done</p>
+<h3 id="ont-nanopolish">ONT nanopolish</h3>
+<p>Here we can use the same approach as for Racon, meaning mapping with minimap2</p></body>
+</html>

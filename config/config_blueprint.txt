@@ -1,0 +1,92 @@
+[General]
+
+input_fofn = input.fofn
+
+genome_size = 20000000
+
+input_type = raw
+
+length_cutoff = 10000
+
+length_cutoff_pr = 5000
+
+target = assembly
+
+default_conconcurrent_jobs = 5
+# (int) maximum concurrency
+# This applies even to "local" (non-distributed) jobs.
+
+
+job_type = local
+# (string) grid submission system, or "local"
+# case-insensitive
+# Supported types include: "sge", "lsf", "pbs", "torque", "slurm", "local"
+
+job_queue = default
+# (string) grid job-queue name
+# Can be overridden with section-specific sge_option_*
+
+# Grid job distribution options
+# No matter what the job_type, we call these "sge_option_*".
+# These are ignored for the "local" job_type.
+# Typical values:
+sge_option_da =   -pe smp 4
+sge_option_la =   -pe smp 2 
+sge_option_cns =  -pe smp 4
+sge_option_pda =  -pe smp 4
+sge_option_pla =  -pe smp 2
+sge_option_fc =   -pe smp 5
+
+# da:  daligner (stage-0)
+# la:  las-merging (stage-0)
+# cns: consensus (stage-0)
+# pda: daligner on preads (stage-1)
+# pla: las-merging on preads (stage-1)
+# fc:  falcon (stage-2)
+
+# sub-tool options
+# For specific sub-tool options, try `--help`, search for docs here, or see
+#    https://dazzlerblog.wordpress.com/command-guides/
+
+#currently eating up too much memory (110GB / thread) threfore 4 jobs
+#maybe try more jobs and smaller t or s values
+pa_concurrent_jobs = 5
+ovlp_concurrent_jobs = 5
+
+pa_HPCdaligner_option   = -v -dal200 -t16 -e.70      -l1000 -s800
+ovlp_HPCdaligner_option = -v -dal200 -t32 -h60 -e.96 -l500  -s800
+#pa_DBsplit_option = -a -x500 -s400
+#ovlp_DBsplit_option = -a -x500 -s400
+
+falcon_sense_option = --output_multi --min_idt 0.70 --min_cov 3 --max_n_read 200 --n_core 4 
+overlap_filtering_setting = --max_diff 60 --max_cov 100 --min_cov 2 --bestn 10 --n_core 10
+
+
+
+
+
+# Others
+
+skip_checks = false
+# (boolean string)
+# If "true", then skip `LAcheck` during LAmerge/LAsort.
+# (Actually, `LAcheck` is run, but failures are ignored.)
+# When *daligner* bugs are finally fixed, this will be unnecessary.
+
+dust = false
+# (boolean string)
+# If true, then run `DBdust` before pre-assembly.
+
+dazcon = false
+# (boolean string)
+# If true, then use `dazcon` (from pbdagcon repo).
+
+stop_all_jobs_on_failure = false
+# (boolean string) DEPRECATED
+# This was used for the old pypeFLOW refresh-loop, used by `run0.py`.
+# (This is *not* t^he option to let jobs currently in SGE (etc) to keep running, which is still TODO.)
+
+use_tmpdir = false
+# (boolean string) whether to run each job in TMPDIR and copy results back to nfs
+# If "true", use TMPDIR. (Actually, `tempfile.tmpdir`. See standard Python docs: https://docs.python.org/2/library/tempfile.html )
+# If the value looks like a path, then it is used instead of TMPDIR.
