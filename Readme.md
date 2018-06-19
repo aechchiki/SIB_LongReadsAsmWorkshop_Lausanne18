@@ -1,6 +1,6 @@
 # Long Reads Assembly Workshop, Lausanne 2018
 
-This is a place of development of materials for the long read workshop organised by within Training mission of[Swiss Institute of Bioinformatics](https://www.sib.swiss/training). 
+This is a place of development of materials for the long read workshop organised by within Training mission of [Swiss Institute of Bioinformatics](https://www.sib.swiss/training). 
 
 # Development of materials
 
