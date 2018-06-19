@@ -1,29 +1,12 @@
-# Welcome!
+# Long Reads Assembly Workshop, Lausanne 2018
 
- This page contains the teaching material for the hands-on session of the course **Long reads applied to plant genome assembling** (SIB/CUSO).
+This is a place of development of materials for the long read workshop organised by within Training mission of[Swiss Institute of Bioinformatics](https://www.sib.swiss/training). 
 
-* [Course page & schedule](https://biologie.cuso.ch/index.php?id=1741&L=0&tx_displaycontroller[showUid]=4089)
-* [Contributors to this tutorial](documentation/contributors.md)
+# Development of materials
 
+- The text of the practicals will be in the [wiki of this repository](https://github.com/aechchiki/LongReadsWorkshop_PlantGenomeAssembly/wiki). This organization will allow to move details to separated cross-linked pages and to keep the main page of practicals clear and non-polluted by details.
+- This repository should serve mainly for testing, but also for the record of downloaded data, all the scripts, etc.
+- You can add here figures (preferably png format) that can be linked from wiki, also some SMALL datasets
+- You should NOT add here bigger data, pdfs, or other stuff that is not very useful to version
+- Do not hesitate to use issues
 
-# Hands-on session
-
-This material should provide a first-steps support on how to operate with long reads using command line tools. The goal is to provide a starting point for researchers that are familiar with next generation data and Unix operations but new to long read sequencing and genome assembly.
-
-* [Learning objectives](documentation/learning_objectives.md)
-
-# Table of content
-
-* Computation platform
-  * [Vital-IT](vitalit.md)
-  * [UNIX refresh](unix.md)
-* Pre-assembly
-  * [Data](bio.md)
-  * [Working groups](work.md)
-* Assembly
-  * [Getting started](ass_main.md)
-  * [Assembling](assembling.md)
-  * [Polishing](polishing.md)
-* Post-assembly
-
-Your feedback is important to us and greatly appreciated.
