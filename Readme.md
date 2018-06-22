@@ -10,3 +10,4 @@ This is a place of development of materials for the long read workshop organised
 - You should NOT add here bigger data, pdfs, or other stuff that is not very useful to version
 - Do not hesitate to use issues
 
+DISCLAIMER: all scripts used in this workshop (see software) are distributed without any warranty and were not tested to the full extent (some even generated for the workshop specifically). 
